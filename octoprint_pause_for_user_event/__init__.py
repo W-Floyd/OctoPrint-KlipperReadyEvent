@@ -5,7 +5,7 @@ import octoprint.plugin
 import logging
 from octoprint.events import eventManager, Events
 
-class pause_for_user_event(octoprint.plugin.SettingsPlugin):
+class klipper_ready_event(octoprint.plugin.SettingsPlugin):
     
     def get_settings_defaults(self):
         return {}
@@ -15,18 +15,18 @@ class pause_for_user_event(octoprint.plugin.SettingsPlugin):
         # Plugin here. See https://github.com/foosel/OctoPrint/wiki/Plugin:-Software-Update
         # for details.
         return dict(
-            pause_for_user_event=dict(
-                displayName="PauseForUser Event Plugin",
+            klipper_ready_event=dict(
+                displayName="KlipperReady Event Plugin",
                 displayVersion=self._plugin_version,
 
                 # version check: github repository
                 type="github_release",
-                user="zeroflow",
-                repo="OctoPrint-PauseForUserEvent",
+                user="W-Floyd",
+                repo="OctoPrint-KlipperReady",
                 current=self._plugin_version,
 
                 # update method: pip
-                pip="https://github.com/zeroflow/OctoPrint-PauseForUserEvent/archive/{target_version}.zip"
+                pip="https://github.com/W-Floyd/OctoPrint-KlipperReady/archive/{target_version}.zip"
             )
         )
     
@@ -39,11 +39,11 @@ class pause_for_user_event(octoprint.plugin.SettingsPlugin):
     
     def recv_callback(self, comm_instance, line, *args, **kwargs):
         # Found keyword, fire event and block until other text is received
-        if "echo:busy: paused for user" in line:
+        if "// Klipper state: Ready" in line:
             if not self.triggered:
-                eventManager().fire(Events.PLUGIN_PAUSE_FOR_USER_EVENT_NOTIFY)
+                eventManager().fire(Events.PLUGIN_KLIPPER_READY_EVENT_NOTIFY)
                 self.triggered = True
-        # Other text, we may fire another event if we encounter "paused for user" again
+        # Other text, we may fire another event if we encounter "Klipper state: Ready" again
         else:
             self.triggered = False
             
@@ -52,11 +52,11 @@ class pause_for_user_event(octoprint.plugin.SettingsPlugin):
 # If you want your plugin to be registered within OctoPrint under a different name than what you defined in setup.py
 # ("OctoPrint-PluginSkeleton"), you may define that here. Same goes for the other metadata derived from setup.py that
 # can be overwritten via __plugin_xyz__ control properties. See the documentation for that.
-__plugin_name__ = "PauseForUser Event Plugin"
+__plugin_name__ = "KlipperReady Event Plugin"
 
 def __plugin_load__():
     global __plugin_implementation__
-    __plugin_implementation__ = pause_for_user_event()
+    __plugin_implementation__ = klipper_ready_event()
 
     global __plugin_hooks__
     __plugin_hooks__ = {

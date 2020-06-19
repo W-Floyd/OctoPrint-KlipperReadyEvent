@@ -4,21 +4,21 @@
 ### Do not forget to adjust the following variables to your own plugin.
 
 # The plugin's identifier, has to be unique
-plugin_identifier = "pause_for_user_event"
+plugin_identifier = "klipper_ready_event"
 
 # The plugin's python package, should be "octoprint_<plugin identifier>", has to be unique
-plugin_package = "octoprint_pause_for_user_event"
+plugin_package = "octoprint_klipper_ready_event"
 
 # The plugin's human readable name. Can be overwritten within OctoPrint's internal data via __plugin_name__ in the
 # plugin module
-plugin_name = "OctoPrint-PauseForUser Event"
+plugin_name = "OctoPrint-KlipperReady Event"
 
 # The plugin's version. Can be overwritten within OctoPrint's internal data via __plugin_version__ in the plugin module
 plugin_version = "0.1.1"
 
 # The plugin's description. Can be overwritten within OctoPrint's internal data via __plugin_description__ in the plugin
 # module
-plugin_description = """Raises the event 'paused_for_user' when the printer sends the same via serial"""
+plugin_description = """Raises the event 'klipper_ready' when the printer sends the same via serial"""
 
 # The plugin's author. Can be overwritten within OctoPrint's internal data via __plugin_author__ in the plugin module
 plugin_author = "Thomas Arthofer"
@@ -27,7 +27,7 @@ plugin_author = "Thomas Arthofer"
 plugin_author_email = "thomas@arthofer.dev"
 
 # The plugin's homepage URL. Can be overwritten within OctoPrint's internal data via __plugin_url__ in the plugin module
-plugin_url = "https://github.com/zeroflow/OctoPrint-PauseForUserEvent"
+plugin_url = "https://github.com/W-Floyd/OctoPrint-KlipperReadyEvent"
 
 # The plugin's license. Can be overwritten within OctoPrint's internal data via __plugin_license__ in the plugin module
 plugin_license = "AGPLv3"
